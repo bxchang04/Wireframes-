@@ -1379,6 +1379,8 @@ a.link-bar--selected {
   background-image: url(../img/placeholder-text.svg);
   background-size: 100% 176px; }
 
+/*Resizing*/
+
 .resizable {
   background: white;
 /*  width: 100px;
@@ -1448,4 +1450,34 @@ a.link-bar--selected {
   bottom: -5px;
   right: 350px; /* make dynamic */
   cursor: ns-resize;
+}
+
+/*Dragging*/
+
+#container {
+  width: 100%;
+  height: 400px;
+  background-color: #333;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 7px;
+  touch-action: none;
+}
+#item {
+  width: 100px;
+  height: 100px;
+  background-color: rgb(245, 230, 99);
+  border: 10px solid rgba(136, 136, 136, .5);
+  border-radius: 50%;
+  touch-action: none;
+  user-select: none;
+}
+#item:active {
+  background-color: rgba(168, 218, 220, 1.00);
+}
+#item:hover {
+  cursor: pointer;
+  border-width: 20px;
 }
