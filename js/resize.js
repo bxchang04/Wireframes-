@@ -111,27 +111,36 @@ function makeResizableDiv(div) {
   }
 }
 
-makeResizableDiv('.resizable') //modify this to only run when a resizeable element is clicked on
+makeResizableDiv('.resizable') //can modify this to only run when a resizeable element is clicked on (but current implementation might be more performant -- toggle it on and off using CSS classes)
+
 
 // SELECTION
+//BUG -- clicking on canvas selects firstElementChild
+//BUG -- breaks resizing
 
 //https://codepen.io/bxchang04/pen/abOreoP
-// Toggle resizing border and resizers on/off
-function classToggleOn() {
-  // const element = document.querySelector(div); //not working
+// Toggle resizing border and resizers on/off. Called on a parent element for performance reasons.
+function toggleDown() {
+  if (!event.target.closest('.dragging')){ //bug -- it can drag even if not clicking target
+  // if (!this.firstElementChild.classList.contains('.dragging')){
+  this.firstElementChild.classList.toggle('dragging');
+  }
+}
+
+function toggleUp() {
   console.log("toggle")
-  console.log("target = " + event.target.classList)
+  console.log("classes = " + event.target.classList)
+  this.firstElementChild.classList.toggle('dragging');
 
-  // If the click happened inside the the container, bail
-  if (event.target.closest('.resizable')) return; //closest also checks for parent element
+  // If closest element to click is an already selected element, bail
+  if (event.target.closest('.resizable')) return
 
-  // Otherwise...
-  // if (event.target.contains('.resizable__off')) {
-    this.classList.toggle('resizable__off');
-    this.classList.toggle('resizable');
+  // Otherwise if element clicked is not selected, select
+  // if (event.target.classList.contains('.resizable__off')) {
+    this.firstElementChild.classList.toggle('resizable');
   // }
-
 }
 
 // Add event listeners for toggling on and off
-document.querySelector('.canvas').addEventListener('click', classToggleOn);
+document.querySelector('.canvas').addEventListener('mousedown', toggleDown); //change canvas to ID? And canvas can have only 1 child.
+document.querySelector('.canvas').addEventListener('mouseup', toggleUp); //change canvas to ID? And canvas can have only 1 child.
