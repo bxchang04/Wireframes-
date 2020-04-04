@@ -11,14 +11,14 @@ function drag_div(div){
   div = document.getElementById(div); //querySelector doesn't seem to work here. Performance is better by ID (but will it work on multi-select??)
 
   document.addEventListener('mousedown', function(e) { //vs div.?
-    // if(div.classList.contains('dragging')) {
+    // if(div.classList.contains('dragging')) { //buggy (end bracket below)
       isDown = true;
       offset = [
         div.offsetLeft - e.clientX,
         div.offsetTop - e.clientY
       ];
     }, true);
-  // }
+  // } //buggy
   document.addEventListener('mouseup', function() { //vs div.?
       isDown = false;
   }, true);

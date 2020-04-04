@@ -106,17 +106,18 @@ function makeResizableDiv(div) {
 
     // Stop resizing (on mouse up)
     function stopResize() {
-      window.removeEventListener('mousemove', resize)
+      window.removeEventListener('mousemove', resize) //instead of adding/removing event listeners, how about just add/removing CSS classes?
     }
   }
 }
 
-makeResizableDiv('.resizable') //can modify this to only run when a resizeable element is clicked on (but current implementation might be more performant -- toggle it on and off using CSS classes)
+
 
 
 // SELECTION
-//BUG -- clicking on canvas selects firstElementChild
+//BUG -- can drag element when dragging canvas
 //BUG -- breaks resizing
+//BUG -- clicking canvas selects firstChild
 
 //https://codepen.io/bxchang04/pen/abOreoP
 // Toggle resizing border and resizers on/off. Called on a parent element for performance reasons.
@@ -130,6 +131,9 @@ function toggleDown() {
 function toggleUp() {
   console.log("toggle")
   console.log("classes = " + event.target.classList)
+
+  makeResizableDiv('.resizable') //moved into toggleUp so that it only runs when a resizeable element is clicked up. But BUG -- only works on second click.
+
   this.firstElementChild.classList.toggle('dragging');
 
   // If closest element to click is an already selected element, bail
