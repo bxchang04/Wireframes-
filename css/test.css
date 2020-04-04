@@ -1379,11 +1379,15 @@ a.link-bar--selected {
   background-image: url(../img/placeholder-text.svg);
   background-size: 100% 176px; }
 
+/* Dragging */
+#div_id {
+  position: absolute;
+}
+
+/* Resizing */
+
 .resizable {
-  background: white;
-/*  width: 100px;
-  height: 100px;
-*/  position: absolute;
+  position: absolute;
   top: 100px;
   left: 100px;
 }
@@ -1434,13 +1438,13 @@ a.link-bar--selected {
 
 .resizable .resizers .resizer.right-only {
   right: -5px;
-  top: 200; /* make dynamic */
+  top: 200px; /* make dynamic */
   cursor: ew-resize;
 }
 
 .resizable .resizers .resizer.top-only {
   right: 350px; /* make dynamic */
-  top: -5;
+  top: -5px;
   cursor: ns-resize;
 }
 

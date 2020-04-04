@@ -1,5 +1,7 @@
 //https://medium.com/the-z/making-a-resizable-div-in-js-is-not-easy-as-you-think-bda19a1bc53d
 
+//Add code where border and resizers appear only when element is clicked
+//And enable resizers only if they are directly clicked on.
 
 function makeResizableDiv(div) {
   const element = document.querySelector(div);
@@ -105,29 +107,3 @@ function makeResizableDiv(div) {
 }
 
 makeResizableDiv('.resizable')
-
-/*
-function makeResizableDivRight(div) { //renamed
-  const element = document.querySelector(div);
-  const resizers = document.querySelectorAll(div + ' .resizer')
-  for (let i = 0;i < resizers.length; i++) {
-    const currentResizer = resizers[i];
-    currentResizer.addEventListener('mousedown', function(e) {
-      e.preventDefault()
-      window.addEventListener('mousemove', resize)
-      window.addEventListener('mouseup', stopResize)
-    })
-
-    function resize(e) {
-      if (currentResizer.classList.contains('right-only')) { //edit here
-        element.style.width = e.pageX - element.getBoundingClientRect().left + 'px'
-      }
-    }
-
-    function stopResize() {
-      window.removeEventListener('mousemove', resize)
-    }
-  }
-}
-
-makeResizableDivRight('.resizable') //renamed*/
