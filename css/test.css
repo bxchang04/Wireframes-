@@ -1381,15 +1381,14 @@ a.link-bar--selected {
 
 /* Dragging -- not used currently */
 #draggable {
-  position: absolute;
+  position: absolute; /* study this */
 }
 
 /* Resizing */
 
 .resizable {
-  position: absolute;
-  top: 100px;
-  left: 100px;
+  position: absolute; /* study this. originally in resizeable. if off on all styles, resizers cover entire browser body. */
+  /*is this needed? Seems redundant.*/
 }
 
 .resizable .resizers{
@@ -1402,7 +1401,7 @@ a.link-bar--selected {
 .resizable .resizers .resizer{
   width: 15px;
   height: 15px;
-  border-radius: 50%;
+  border-radius: 50%; /* Balsamiq has squares - turn off? */
   background: white;
   border: 3px solid #4286f4;
   position: absolute;

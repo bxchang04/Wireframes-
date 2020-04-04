@@ -9,7 +9,7 @@
 		<link href="css/test.css" rel="stylesheet">
   </head>
 	<body>
-	 <div class="browser resizable" id="draggable">
+		<div class="browser resizable__off" id="draggable"> <!--why can't I add resizers here, why does it need its own div?? If I do, .resizers disappears-->
 			<div class="resizers">
 				<div class='resizer top-left'></div>
 				<div class='resizer top-right'></div>
@@ -33,10 +33,10 @@
 					<input type="search" class="browser__search" placeholder="https://">
 					<svg class="icon"><use href="#icon-ellipsis-vertical"></use></svg>
 				</div>
-      </div>
-    </div>
+			</div>
+		</div>
 
-	<script src="js/test.js"></script>
+	<script src="js/resize.js"></script>
 	<script src="js/drag.js"></script>
 
   </body>

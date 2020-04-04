@@ -3,16 +3,15 @@
 
 //Major bug -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false
 
-function drag_div(draggable){
+function drag_div(div){
   var mousePosition;
   var offset = [0,0];
-  var div;
   var isDown = false;
 
-  div = document.getElementById(draggable);
-  element = document.querySelector('.resizable');
+  div = document.getElementById(div);
 
   document.addEventListener('mousedown', function(e) { //vs div.?
+    console.log(this.pageX);
     isDown = true;
     offset = [
       div.offsetLeft - e.clientX,
