@@ -1,22 +1,23 @@
 //https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
 //Why does this use ID and not class?
 
-//Major bug -- draggable and resize conflict. Try using a class called 'enabled'?
+//Major bug -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false
 
-function drag_div(div_id){
+function drag_div(draggable){
   var mousePosition;
   var offset = [0,0];
   var div;
   var isDown = false;
 
-  div = document.getElementById(div_id);
+  div = document.getElementById(draggable);
+  element = document.querySelector('.resizable');
 
   document.addEventListener('mousedown', function(e) { //vs div.?
-      isDown = true;
-      offset = [
-          div.offsetLeft - e.clientX,
-          div.offsetTop - e.clientY
-      ];
+    isDown = true;
+    offset = [
+      div.offsetLeft - e.clientX,
+      div.offsetTop - e.clientY
+    ];
   }, true);
 
   document.addEventListener('mouseup', function() { //vs div.?
@@ -38,4 +39,4 @@ function drag_div(div_id){
   }, true);
 }
 
-drag_div('div_id');
+drag_div('draggable');

@@ -1379,8 +1379,8 @@ a.link-bar--selected {
   background-image: url(../img/placeholder-text.svg);
   background-size: 100% 176px; }
 
-/* Dragging */
-#div_id {
+/* Dragging -- not used currently */
+#draggable {
   position: absolute;
 }
 
