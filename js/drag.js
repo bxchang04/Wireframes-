@@ -11,7 +11,6 @@ function drag_div(div){
   div = document.getElementById(div);
 
   document.addEventListener('mousedown', function(e) { //vs div.?
-    console.log(this.pageX);
     isDown = true;
     offset = [
       div.offsetLeft - e.clientX,

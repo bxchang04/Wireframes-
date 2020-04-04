@@ -113,14 +113,25 @@ function makeResizableDiv(div) {
 
 makeResizableDiv('.resizable') //modify this to only run when a resizeable element is clicked on
 
+// SELECTION
+
 //https://codepen.io/bxchang04/pen/abOreoP
 // Toggle resizing border and resizers on/off
+function classToggleOn() {
+  // const element = document.querySelector(div); //not working
+  console.log("toggle")
+  console.log("target = " + event.target.classList)
 
-//FIX: Modify toggle off so that it only toggles off when clicking on any other object, and not itself!
-function classToggle() {
+  // If the click happened inside the the container, bail
+  if (event.target.closest('.resizable')) return; //closest also checks for parent element
+
+  // Otherwise...
+  // if (event.target.contains('.resizable__off')) {
     this.classList.toggle('resizable__off');
     this.classList.toggle('resizable');
-    document.querySelector('.resizable__off').removeEventListener('click', classToggle); // why does this allow me to click one more time. Capture vs. bubble?
+  // }
+
 }
 
-document.querySelector('.resizable__off').addEventListener('click', classToggle);
+// Add event listeners for toggling on and off
+document.querySelector('.canvas').addEventListener('click', classToggleOn);

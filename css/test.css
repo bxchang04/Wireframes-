@@ -1452,3 +1452,8 @@ a.link-bar--selected {
   right: 350px; /* make dynamic */
   cursor: ns-resize;
 }
+
+.canvas {
+  width: 1000px;
+  height: 1000px;
+}
