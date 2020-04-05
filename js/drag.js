@@ -10,32 +10,33 @@ function drag_div(div){
 
   div = document.getElementById(div); //querySelector doesn't seem to work here. Performance is better by ID (but will it work on multi-select??)
 
-  document.addEventListener('mousedown', function(e) { //vs div.?
-    // if(div.classList.contains('dragging')) { //buggy (end bracket below)
-      isDown = true;
-      offset = [
-        div.offsetLeft - e.clientX,
-        div.offsetTop - e.clientY
-      ];
+  if(event.target.matches('dragging')) { //buggy (end bracket below)
+  // if(div.classList.contains('dragging')) { //buggy (end bracket below)
+    document.addEventListener('mousedown', function(e) { //vs div.?
+        isDown = true;
+        offset = [
+          div.offsetLeft - e.clientX,
+          div.offsetTop - e.clientY
+        ];
+      }, true);
+    document.addEventListener('mouseup', function() { //vs div.?
+        isDown = false;
     }, true);
-  // } //buggy
-  document.addEventListener('mouseup', function() { //vs div.?
-      isDown = false;
-  }, true);
 
-  document.addEventListener('mousemove', function(event) { //vs div.?
-      event.preventDefault();
-      if (isDown) {
-          mousePosition = {
+    document.addEventListener('mousemove', function(event) { //vs div.?
+        event.preventDefault();
+        if (isDown) {
+            mousePosition = {
 
-              x : event.clientX,
-              y : event.clientY
+                x : event.clientX,
+                y : event.clientY
 
-          };
-          div.style.left = (mousePosition.x + offset[0]) + 'px';
-          div.style.top  = (mousePosition.y + offset[1]) + 'px';
-      }
-  }, true);
+            };
+            div.style.left = (mousePosition.x + offset[0]) + 'px';
+            div.style.top  = (mousePosition.y + offset[1]) + 'px';
+        }
+    }, true);
+  } //buggy
 }
 
 drag_div('draggable');

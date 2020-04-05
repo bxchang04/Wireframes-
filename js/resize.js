@@ -2,6 +2,8 @@
 
 //Add code where border and resizers appear only when element is clicked. Use onClick to add the class "resizeable"?
 
+//Enhance: Use JS to instantiate the resizers. That way every element doesn't need to already have resizers in the HTML hardcoded.
+
 //BUGFIX: And enable resizers only if they are directly clicked on. Prevent element from being dragged while being resized after selection
 
 function makeResizableDiv(div) {
