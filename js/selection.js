@@ -1,7 +1,6 @@
 // SELECTION
 //Major bug -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID.
 //BUG -- can drag element when dragging canvas
-//BUG -- can't unselect by clicking canvas
 //BUG -- dragging fails on first try
 //BUG -- mouseUp after drag select firstChild
 

@@ -1,7 +1,5 @@
 //https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
-//Why does this use ID and not class?
-
-
+//Why does this use ID and not class? Performance. But why doesn't querySelector work here?
 
 function drag_div(div){
   var mousePosition;
@@ -39,5 +37,5 @@ function drag_div(div){
   // } //buggy
 }
 
-drag_div('draggable'); // call this in resize.js using the toggleDown functino (selection)
+// drag_div('draggable'); // call this in resize.js using the toggleDown functino (selection)
 // drag_div('canvas');
