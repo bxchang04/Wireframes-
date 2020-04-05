@@ -1,10 +1,14 @@
 //https://medium.com/the-z/making-a-resizable-div-in-js-is-not-easy-as-you-think-bda19a1bc53d
 
-//Add code where border and resizers appear only when element is clicked. Use onClick to add the class "resizeable"?
-
 //Enhance: Use JS to instantiate the resizers. That way every element doesn't need to already have resizers in the HTML hardcoded.
 
-//BUGFIX: And enable resizers only if they are directly clicked on. Prevent element from being dragged while being resized after selection
+//BUG: Clicking on canvas selects element
+
+//BUG: First attempt to resize fails
+
+//BUG: And enable resizers only if they are directly clicked on. Prevent element from being dragged while being resized after selection
+
+//BUG: Make resizers not get cut off on edges
 
 function makeResizableDiv(div) {
   const element = document.querySelector(div);
@@ -120,6 +124,7 @@ function makeResizableDiv(div) {
 //BUG -- can drag element when dragging canvas
 //BUG -- breaks resizing
 //BUG -- clicking canvas selects firstChild
+//BUG -- dragging fails on first try
 
 //https://codepen.io/bxchang04/pen/abOreoP
 // Toggle resizing border and resizers on/off. Called on a parent element for performance reasons.
@@ -127,6 +132,7 @@ function toggleDown() {
   if (!event.target.closest('.dragging')){ //bug -- it can drag even if not clicking target
   // if (!this.firstElementChild.classList.contains('.dragging')){
   this.firstElementChild.classList.toggle('dragging');
+  // drag_div('draggable');
   }
 }
 
