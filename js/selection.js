@@ -5,11 +5,14 @@
 
 //BUG -- clicking up on selected element again should not remove selection border (.ds-selected in dragSelect.js) on second click (leaves resizers).
 
+//BUG -- drag and drop -- on mouse up, element has classes dragNdrop--start and dragNdrop--stop. May cause bugs.
+
 //BUG -- flickers if selected item is clicked quickly and >2 times. .ds-selected is removed?
 
 //BUG: Prevent resizers from being cut off
 
-//Enhance -- selection -- replace all instances of firstElementChild. Then test with something other than browser.
+//Enhance -- multi-drag -- modify dNd so that it accepts selection from DS.
+  //Enhance -- selection -- replace all instances of firstElementChild. Then test with something other than browser.
 //Enhance -- grey background box on selection and drag, like Balsamiq?
 //Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
 
@@ -19,7 +22,6 @@
 
 
 function toggleDown() {
-  // this.firstElementChild.classList.add('dragging'); //currently not in use
 
 // Disable drag select while dragging -- refactor somehow. Add a controller?
   if (event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
@@ -29,7 +31,6 @@ function toggleDown() {
     console.log("target = " + event.target.classList)
     ds.break(); // instead of stop, which removes the selection border. Enhance -- keep .ds-selected class
     //this.classList.add('.ds-selected'); // doesn't work. Is supposed to preserve selection box.
-
   }
 }
 
@@ -47,8 +48,6 @@ function toggleUp() {
   if (!event.target.closest('.resizable')) {
     this.firstElementChild.classList.remove('resizable');
   }
-
-  // this.firstElementChild.classList.remove('dragging'); //currently not in use
 
 }
 // Add event listeners for toggling on and off
