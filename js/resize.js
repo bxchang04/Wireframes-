@@ -37,6 +37,7 @@ function makeResizableDiv(div) {
     // Resize window depending on which resizer is being dragged (runs constantly until stopResize is called)
     // Enhance -- try to set a conditional where this only runs when a CSS class (e.g. 'resizing' is present. Then can add the stopResize function and listener.)
     function resize(e) {
+      ds.stop(); // will stop the drag select .Refactor to call a function in StopDuringResizing.
       dnd.pause(); // will stop the dragging process .Refactor to call a function in StopDraggingDuringResizing.
 
       if (currentResizer.classList.contains('bottom-right')) {
@@ -115,7 +116,8 @@ function makeResizableDiv(div) {
     function stopResize() {
       window.removeEventListener('mousemove', resize) //instead of adding/removing event listeners, how about just add/removing CSS classes?
 
-      dnd.start(); // will stop the dragging process. Refactor to call a function in RestartDraggingAfterResizing.
+      ds.start(); // will stop the drag select process. Refactor to call a function in RestartfterResizing.
+      dnd.start(); // will stop the dragging process. Refactor to call a function in RestartfterResizing.
 
     }
   }
