@@ -1456,7 +1456,8 @@ a.link-bar--selected {
 }
 
 /* Drag Select */
-* { user-select: none; }
+* { user-select: none; } /* Do not allow user to select text */
+
 .item {
   position: absolute; /*redundant?*/
 }

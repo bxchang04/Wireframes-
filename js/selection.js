@@ -1,7 +1,13 @@
 // SELECTION
 //BUG (SEVERE) -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID or using something to replace it.
 
-//BUG -- should not unselect on second click (leaves resizers).
+//BUG - A - Resizers broken (TL, L, BL, T, TR)
+
+//BUG -- clicking up on selected element again should not remove selection border (.ds-selected in dragSelect.js) on second click (leaves resizers).
+
+//BUG -- flickers if selected item is clicked quickly and >2 times. .ds-selected is removed?
+
+//BUG: Prevent resizers from being cut off
 
 //Enhance -- selection -- replace all instances of firstElementChild. Then test with something other than browser.
 //Enhance -- grey background box on selection and drag, like Balsamiq?
@@ -16,12 +22,14 @@ function toggleDown() {
   // this.firstElementChild.classList.add('dragging'); //currently not in use
 
 // Disable drag select while dragging -- refactor somehow. Add a controller?
-  console.log("target = " + event.target.classList)
   if (event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
     ds.start();
   }
   else {
-    ds.break(); // instead of stop, which removes the selection border
+    console.log("target = " + event.target.classList)
+    ds.break(); // instead of stop, which removes the selection border. Enhance -- keep .ds-selected class
+    //this.classList.add('.ds-selected'); // doesn't work. Is supposed to preserve selection box.
+
   }
 }
 
