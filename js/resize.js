@@ -2,7 +2,7 @@
 
 //Enhance: Use JS to instantiate the resizers. That way every element doesn't need to already have resizers in the HTML hardcoded.
 
-//Enhance: Multi selection -- surround all objects with resizers and border. Resize all objects equally. 
+//Enhance: Multi selection -- surround all objects with resizers and border. Resize all objects equally.
 
 //BUG: Prevent element from jumping when resizing TL, L, BL, T, and TR.
 
@@ -39,8 +39,8 @@ function makeResizableDiv(div) {
     // Resize window depending on which resizer is being dragged (runs constantly until stopResize is called)
     // Enhance -- try to set a conditional where this only runs when a CSS class (e.g. 'resizing' is present. Then can add the stopResize function and listener.)
     function resize(e) {
-      ds.stop(); // will stop the drag select .Refactor to call a function in StopDuringResizing.
-      dnd.pause(); // will stop the dragging process .Refactor to call a function in StopDraggingDuringResizing.
+      ds.break(); // use instead of break, which removes the selection border .Refactor to call a function in StopDuringResizing.
+      dnd.stop(); // will stop the dragging process .Refactor to call a function in StopDraggingDuringResizing.
 
       if (currentResizer.classList.contains('bottom-right')) {
         const width = original_width + (e.pageX - original_mouse_x);

@@ -13,8 +13,6 @@ function drag_div(div){
 
   div = document.getElementById(div); //querySelector doesn't seem to work here. TryPerformance is better by ID (but will it work on multi-select??)
 
-  // if(event.target.matches('dragging')) { //buggy (end bracket below)
-  // if(div.classList.contains('dragging')) { //buggy (end bracket below)
   document.addEventListener('mousedown', function(e) { //vs div.?
       isDown = true;
       offset = [
@@ -39,5 +37,4 @@ function drag_div(div){
         div.style.top  = (mousePosition.y + offset[1]) + 'px';
     }
   }, true);
-  // } //buggy
 }
