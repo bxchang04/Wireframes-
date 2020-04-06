@@ -2,6 +2,8 @@
 
 //Enhance: Use JS to instantiate the resizers. That way every element doesn't need to already have resizers in the HTML hardcoded.
 
+//Enhance: Multi selection -- surround all objects with resizers and border. Resize all objects equally. 
+
 //BUG: Prevent element from jumping when resizing TL, L, BL, T, and TR.
 
 //BUG: Prevent element from being cut off

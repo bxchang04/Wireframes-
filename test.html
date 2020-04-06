@@ -36,6 +36,34 @@
 					</div>
 				</div>
 			</div>
+
+			<div id="draggable" class="browser item"> <!--why can't I add resizers here, why does it need its own div?? (w/o it, .resizers disappears)-->
+				<div class="resizers">
+					<div class='resizer top-left'></div>
+					<div class='resizer top-right'></div>
+					<div class='resizer bottom-left'></div>
+					<div class='resizer bottom-right'></div>
+					<div class='resizer left-only'></div>
+					<div class='resizer right-only'></div>
+					<div class='resizer top-only'></div>
+					<div class='resizer bottom-only'></div>
+					<div class="browser__header">
+						<h2 class="browser__title">Webpage title</h2>
+						<svg class="icon"><use href="#icon-minus"></use></svg>
+						<svg class="icon"><use href="#icon-square"></use></svg>
+						<svg class="icon"><use href="#icon-close"></use></svg>
+					</div>
+
+					<div class="browser__toolbar">
+						<svg class="icon"><use href="#icon-arrow-left"></use></svg>
+						<svg class="icon"><use href="#icon-arrow-right"></use></svg>
+						<svg class="icon"><use href="#icon-refresh"></use></svg>
+						<input type="search" class="browser__search" placeholder="https://">
+						<svg class="icon"><use href="#icon-ellipsis-vertical"></use></svg>
+					</div>
+				</div>
+			</div>
+
 		</div>
 
 	<script src="js/ds.min.js"></script>
