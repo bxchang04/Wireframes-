@@ -2,11 +2,9 @@
 
 //Enhance: Use JS to instantiate the resizers. That way every element doesn't need to already have resizers in the HTML hardcoded.
 
-//BUG: Clicking on canvas selects element
+//BUG: Prevent element from jumping when resizing TL, L, BL, T, and TR.
 
-//BUG: First attempt to resize fails
-
-//BUG: And enable resizers only if they are directly clicked on. Prevent element from being dragged while being resized after selection
+//BUG: Prevent element from being cut off
 
 //BUG: Make resizers not get cut off on edges
 
@@ -37,7 +35,10 @@ function makeResizableDiv(div) {
     })
 
     // Resize window depending on which resizer is being dragged (runs constantly until stopResize is called)
+    // Enhance -- try to set a conditional where this only runs when a CSS class (e.g. 'resizing' is present. Then can add the stopResize function and listener.)
     function resize(e) {
+      dnd.pause(); // will stop the dragging process .Refactor to call a function in StopDraggingDuringResizing.
+
       if (currentResizer.classList.contains('bottom-right')) {
         const width = original_width + (e.pageX - original_mouse_x);
         const height = original_height + (e.pageY - original_mouse_y)
@@ -113,6 +114,9 @@ function makeResizableDiv(div) {
     // Stop resizing (on mouse up)
     function stopResize() {
       window.removeEventListener('mousemove', resize) //instead of adding/removing event listeners, how about just add/removing CSS classes?
+
+      dnd.start(); // will stop the dragging process. Refactor to call a function in RestartDraggingAfterResizing.
+
     }
   }
 }

@@ -4,12 +4,16 @@
 //BUG -- dragging fails on first try
 
 //Enhance -- grey background box on selection and drag, like Balsamiq?
+//Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
 
 //https://codepen.io/bxchang04/pen/abOreoP
 // Toggle resizing border and resizers on/off. Called on a parent element for performance reasons.
+
+
+
 function toggleDown() {
-  drag_div('draggable'); //bugfix - try using 'canvas' instead and modify drag.js to use firstElementChild
-  this.firstElementChild.classList.add('dragging'); //currently not in use
+  // drag_div('draggable'); //bugfix - try using 'canvas' instead and modify drag.js to use firstElementChild
+  // this.firstElementChild.classList.add('dragging'); //currently not in use
 }
 
 function toggleUp() {
@@ -18,7 +22,7 @@ function toggleUp() {
 
   // Otherwise if element clicked is not already selected, select
   if (!event.target.closest('.resizable')) {
-    this.firstElementChild.classList.add('resizable');
+    this.firstElementChild.classList.add('resizable'); // has to be before makeResizableDiv function call.
     makeResizableDiv('.resizable') //moved into toggleUp so that it only runs when a resizeable element is clicked up. But BUG -- only works on second click.
   }
 
@@ -32,3 +36,12 @@ function toggleUp() {
 // Add event listeners for toggling on and off
 document.querySelector('.canvas').addEventListener('mousedown', toggleDown); //change canvas to ID? And canvas can have only 1 child.
 document.querySelector('.canvas').addEventListener('mouseup', toggleUp); //change canvas to ID? And canvas can have only 1 child.
+
+// Drag Select
+
+var ds = new DragSelect({
+  selectables: document.getElementsByClassName('item'),
+  area: document.getElementById('canvas'),
+  multiSelectKeys: ['ctrlKey', 'shiftKey'],
+  autoScrollSpeed: 3
+});

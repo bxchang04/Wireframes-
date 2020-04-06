@@ -9,8 +9,8 @@
 		<link href="css/test.css" rel="stylesheet">
   </head>
 	<body>
-		<div class="canvas">	<!--required for detecting clicks outside parent-->
-			<div class="browser" id="draggable"> <!--why can't I add resizers here, why does it need its own div?? If I do, .resizers disappears-->
+		<div id="canvas" class="canvas">	<!--required for detecting clicks outside parent-->
+			<div id="draggable" class="browser item"> <!--why can't I add resizers here, why does it need its own div?? (w/o it, .resizers disappears)-->
 				<div class="resizers">
 					<div class='resizer top-left'></div>
 					<div class='resizer top-right'></div>
@@ -38,9 +38,12 @@
 			</div>
 		</div>
 
+	<script src="js/ds.min.js"></script>
+	<script src="js/dnd.min.js"></script>
+	<script src="js/dragndrop.js"></script>
 	<script src="js/selection.js"></script>
 	<script src="js/resize.js"></script>
-	<script src="js/drag.js"></script>
+<!--	<script src="js/drag.js"></script>--> <!--buggy-->
 
   </body>
 </html>

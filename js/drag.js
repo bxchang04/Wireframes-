@@ -1,7 +1,11 @@
 //https://stackoverflow.com/questions/24050738/javascript-how-to-dynamically-move-div-by-clicking-and-dragging
+
+//DISABLED due to bugginess
+
 //Why does this use ID and not class? Performance. But why doesn't querySelector work here?
 
-//Bug-fix - try changing div from 'draggable' to 'canvas'
+//Refactor - try changing div from 'draggable' to 'canvas' so that this can be consistent with resize.js (Event delegation vs. listening for events).
+
 function drag_div(div){
   var mousePosition;
   var offset = [0,0];
