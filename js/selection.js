@@ -1,6 +1,8 @@
 // SELECTION
 //BUG (SEVERE) -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID or using something to replace it.
 
+//BUG - A - resizers won't unselect upon clicking on another element. Caused by secondElementChild calls.
+
 //BUG - A - Resizers broken (TL, L, BL, T, TR)
 
 //BUG -- clicking up on selected element again should not remove selection border (.ds-selected in dragSelect.js) on second click (leaves resizers).
@@ -41,14 +43,15 @@ function toggleUp() {
   // Otherwise if element clicked is not already selected, select
   if (!event.target.closest('.resizable')) {
     this.firstElementChild.classList.add('resizable'); // has to be before makeResizableDiv function call.
+    // this.secondElementChild.classList.add('resizable'); // has to be before makeResizableDiv function call.
     makeResizableDiv('.resizable') //moved into toggleUp so that it only runs when a resizeable element is clicked up. But BUG -- only works on second click.
   }
 
   // If element clicked is not the currently selected object, unselect
   if (!event.target.closest('.resizable')) {
     this.firstElementChild.classList.remove('resizable');
+    // this.secondElementChild.classList.remove('resizable');
   }
-
 }
 // Add event listeners for toggling on and off
 document.querySelector('.canvas').addEventListener('mousedown', toggleDown); //change canvas to ID? And canvas can have only 1 child.

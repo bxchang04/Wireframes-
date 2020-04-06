@@ -218,7 +218,6 @@ var dragNdrop = function(options) {
 
   var documentCursorStyles = document.body.style.cursor || 'inherit';
 
-
   //- Event Listeners
   function setupEventListeners(element) {
     if(document.addEventListener) {
