@@ -1,7 +1,10 @@
 // SELECTION
 //BUG (SEVERE) -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID or using something to replace it.
 
-//BUG - A - resizers won't unselect upon clicking on another element. Caused by secondElementChild calls.
+//BUG - A - resizers won't appear on both elements. Caused by secondElementChild calls and possibly 2 draggable IDs.
+
+//Enhance -- Don't hardcode draggable objects. Instead, add ID "draggable[i]" using for loop, and use for loop in dnd.js.
+//Enhance -- Change Z value of object being dragged (z=999?).
 
 //BUG - A - Resizers broken (TL, L, BL, T, TR)
 
