@@ -1,6 +1,9 @@
 // SELECTION
 //BUG (SEVERE) -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID or using something to replace it.
 
+  //Fix -- Implement grouping first. Then apply select only to group. Then turn off resizers and turn on for new group. Then implement dragging only for group.
+  //Enhance -- save group div if user chooses to do so. Otherwise destroy the group div.
+
 //BUG - A - resizers won't appear on both elements. Caused by secondElementChild calls and possibly 2 draggable IDs.
 
 //Enhance -- Don't hardcode draggable objects. Instead, add ID "draggable[i]" using for loop, and use for loop in dnd.js. (This may not work since two items with the same ID don't seem to be draggable)
