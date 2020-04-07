@@ -3,7 +3,7 @@
 
 //BUG - A - resizers won't appear on both elements. Caused by secondElementChild calls and possibly 2 draggable IDs.
 
-//Enhance -- Don't hardcode draggable objects. Instead, add ID "draggable[i]" using for loop, and use for loop in dnd.js.
+//Enhance -- Don't hardcode draggable objects. Instead, add ID "draggable[i]" using for loop, and use for loop in dnd.js. (This may not work since two items with the same ID don't seem to be draggable)
 //Enhance -- Change Z value of object being dragged (z=999?).
 
 //BUG - A - Resizers broken (TL, L, BL, T, TR)
@@ -18,6 +18,8 @@
 
 //Enhance -- multi-drag -- modify dNd so that it accepts selection from DS.
   //Enhance -- selection -- replace all instances of firstElementChild. Then test with something other than browser.
+  //https://stackoverflow.com/questions/5677993/how-do-i-drag-multiple-elements-at-once-with-javascript-or-jquery - (possible work around) Put your items into some container and make this container draggable. You will need to set handle option to be a class of your item element. Also you will need to recalculate items position after drag. And obviously when you deselect items you have to take them from this container and put back to their origin.
+  //jQuery solution -- convert to vanilla JS? - http://jsfiddle.net/zVZFq/1445/
 //Enhance -- grey background box on selection and drag, like Balsamiq?
 //Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
 
