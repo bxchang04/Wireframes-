@@ -70,6 +70,7 @@ document.querySelector('.canvas').addEventListener('mouseup', selectUp); //chang
 
 var ds = new DragSelect({
   selectables: document.getElementsByClassName('item'),
+  callback: e => console.log(e),
   area: document.getElementById('canvas'),
   multiSelectKeys: ['ctrlKey', 'shiftKey'],
   autoScrollSpeed: 3
