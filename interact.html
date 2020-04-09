@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Dragable with interact.js</title>
+    <script type="module" src="index.js"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+</head>
+<body>
+  <div id="canvas" class="canvas">
+    <div class="browser item resize-drag">
+      <div class="resizers">
+        <div class='resizer top-left'></div>
+        <div class='resizer top-right'></div>
+        <div class='resizer bottom-left'></div>
+        <div class='resizer bottom-right'></div>
+        <div class='resizer left-only'></div>
+        <div class='resizer right-only'></div>
+        <div class='resizer top-only'></div>
+        <div class='resizer bottom-only'></div>
+        <div class="browser__header">
+          <h2 class="browser__title">Webpage title</h2>
+          <svg class="icon"><use href="#icon-minus"></use></svg>
+          <svg class="icon"><use href="#icon-square"></use></svg>
+          <svg class="icon"><use href="#icon-close"></use></svg>
+        </div>
+
+        <div class="browser__toolbar">
+          <svg class="icon"><use href="#icon-arrow-left"></use></svg>
+          <svg class="icon"><use href="#icon-arrow-right"></use></svg>
+          <svg class="icon"><use href="#icon-refresh"></use></svg>
+          <input type="search" class="browser__search" placeholder="https://">
+          <svg class="icon"><use href="#icon-ellipsis-vertical"></use></svg>
+        </div>
+      </div>
+    </div> <!--change this to browser-->
+  </div>
+
+
+
+  <!--add resizers 8-->
+    <!--instantiate resizers-->
+  <!--hardcode group-->
+  <!--instantiate group with 2 canvases-->
+    <!--implement group drag-->
+  <!--refactor resizers code to appear on group-->
+    <!--implement group resize-->
+    <!--destroy group on unselect-->
+  <!--implement group saving-->
+  <!--implement components sidebar placeholder-->
+    <!--implement drag and drop components-->
+</body>
+
+<script src="node_modules/interactjs/dist/interact.min.js"></script>
+<script src="node_modules/dragselect/dist/ds.min.js"></script>
+<script src="js/interactjs.js"></script>
+<script src="js/resize.js"></script>
+<script src="js/selection.js"></script>
+
+</html>
