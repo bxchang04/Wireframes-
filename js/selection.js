@@ -46,13 +46,17 @@ function selectDown() {
   }
 }
 
+
 // On mouse up -- to make compatible with DS
 function selectUp() {
+  removeClass(); // remove resizers when canvas is clicked
+}
+/*
   if(event.target.matches('.item')){ //to prevent canvas and resizers to get this class
-    event.target.classList.add('ds-selected'); //to enable selection on single click
+    event.target.classList.add('ds-selected'); //to enable selection on single click. not needed?
   }
 
-/*
+
   if(!event.target.closest('ds-selected')){
       addClassDS();
   }else{
@@ -71,8 +75,10 @@ function addClassDS() {
   if(event.target.closest('ds-selected')){ //to prevent canvas and resizers to get this class
     console.log("add2"); //why doesn't this fire??
     event.target.classList.add('resizable');
-  }*/
 }
+}
+*/
+
 /*
 // Remove all resizers
 function removeClassDS(){
@@ -84,12 +90,14 @@ function removeClassDS(){
 }
 */
 
+//ENHANCE -- Disable resizing unless selected (.ds-selected or .resizable)
+
 //Test cases:
-//1 on click of item
-  //1a add resizer
-  //1b remove resizer for other items on click
-  //1c don't remove resizers on 2nd click of itself
-//2 remove all resizers on click of canvas from all items
+//1 on click of item - PASS
+  //1a add resizer - PASS
+  //1b remove resizer for other items on click - PASS
+  //1c don't remove resizers on 2nd click of itself -
+//2 remove all resizers on click of canvas from all items - PASS
 //3 DS on all items in selection box
 //4 DS on all items with CTRL/SHIFT click
 //5 DS unselect on CTRL/SHIFT click
@@ -99,9 +107,11 @@ var elements = document.querySelectorAll('.item');
 for (var i = 0; i < elements.length; i++) {
     elements[i].classList.remove('resizable');
     elements[i].onclick = function (event) {
+        if(event.target.classList.contains('.resizable')){
         console.log("ONCLICK");
         //remove resizers from all items
         removeClass();
+        }
         if (event.target.innerHTML === this.innerHTML) {
             this.classList.add("resizable");
         }
