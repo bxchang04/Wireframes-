@@ -6,7 +6,12 @@ To improve upon this, more script needs to be added so that a group is created e
 
 // SELECTION
 
-//BUG -- DS does not toggle resizers
+  //Remove all reference to resizer.js
+  //Enhance DS -- toggle resizer on selecting 1 element
+  //Enhance DS
+    //-- instantiate group on selecting 2 elements
+    //-- instantiate group on selecting 3 elements
+  //Toggle resizers for group
 
 //Multi-drag
   //Implement grouping first. Then apply select only to group. Then turn off resizers and turn on for new group. Then implement dragging only for group.
@@ -26,8 +31,8 @@ To improve upon this, more script needs to be added so that a group is created e
 //Enhance -- grey background box on selection and drag, like Balsamiq?
 //Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
 
+// On mouse down
 function selectDown() {
-
 // Disable drag select while dragging -- refactor somehow. Add a controller?
   if (event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
     ds.start();
@@ -39,8 +44,8 @@ function selectDown() {
   }
 }
 
+// On mouse up
 function selectUp() {
-
   // Unselect all elements, then select target
   var elements = document.querySelectorAll('.item');
 
@@ -63,7 +68,7 @@ function selectUp() {
   }
 }
 
-// Removes all resizers when called
+// Remove all resizers
 function removeClass(){
   var elements = document.querySelectorAll('.item');
   for (var i = 0; i < elements.length; i++) {
