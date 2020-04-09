@@ -1,3 +1,5 @@
+// no longer in user
+
 var dnd = dragNdrop({
   // element to be dragged (single DOM element)
   element: document.getElementById('draggable1'),

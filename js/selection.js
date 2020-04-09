@@ -5,25 +5,19 @@ To improve upon this, more script needs to be added so that a group is created e
 
 
 // SELECTION
-//BUG (SEVERE) -- draggable and resize conflict. Try using a class called 'enabled'? Or set a global variable 'resizing' and only allow dragging when it's false. Try taking out the ID or using something to replace it.
 
-  //Fix -- Implement grouping first. Then apply select only to group. Then turn off resizers and turn on for new group. Then implement dragging only for group.
+//BUG -- DS does not toggle resizers
+
+//Multi-drag
+  //Implement grouping first. Then apply select only to group. Then turn off resizers and turn on for new group. Then implement dragging only for group.
   //Enhance -- save group div if user chooses to do so. Otherwise destroy the group div.
 
-//BUG - A - resizers won't appear on both elements. Caused by secondElementChild calls and possibly 2 draggable IDs.
+//Multi-resizer
+  //instantiate resizers on group. Then resize group and scale elements inside (font sizes stay the same)
 
-//Enhance -- Don't hardcode draggable objects. Instead, add ID "draggable[i]" using for loop, and use for loop in dnd.js. (This may not work since two items with the same ID don't seem to be draggable)
-//Enhance -- Change Z value of object being dragged (z=999?).
+//BUG -- need to prevent default of web browser URL bar
 
-//BUG - A - Resizers buggy (TL, L, BL, T, TR) -- conflicts with dragNdrop script.
-
-//BUG -- clicking up on selected element again should not remove selection border (.ds-selected in dragSelect.js) on second click (leaves resizers).
-
-//BUG -- drag and drop -- on mouse up, element has classes dragNdrop--start and dragNdrop--stop. May cause bugs.
-
-//BUG -- flickers if selected item is clicked quickly and >2 times. .ds-selected is removed? (Doesn't happen for resizers border, only DS)
-
-//BUG: Prevent resizers from being cut off
+//BUG: Prevent resizers being cut off on edges (use span?)
 
 //Enhance -- multi-drag -- modify dNd so that it accepts selection from DS.
   //Enhance -- selection -- replace all instances of firstElementChild. Then test with something other than browser.
@@ -39,38 +33,53 @@ function selectDown() {
     ds.start();
   }
   else {
-    console.log("target = " + event.target.classList)
+    // console.log("target = " + event.target.classList)
     ds.break(); // instead of stop, which removes the selection border. Enhance -- keep .ds-selected class
     //this.classList.add('.ds-selected'); // doesn't work. Is supposed to preserve selection box.
   }
 }
 
 function selectUp() {
-  // If closest element to click is an already selected element, bail
-  if (event.target.closest('.resizable')) return
 
-  // Otherwise if element clicked is not already selected, select
-  if (!event.target.closest('.resizable')) {
-    this.firstElementChild.classList.add('resizable'); // has to be before makeResizableDiv function call.
-    // this.secondElementChild.classList.add('resizable'); // has to be before makeResizableDiv function call. Not working, and breaks resizing.
-    makeResizableDiv('.resizable') //moved into toggleUp so that it only runs when a resizeable element is clicked up.
+  // Unselect all elements, then select target
+  var elements = document.querySelectorAll('.item');
+
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.remove('resizable');
+    elements[i].onclick = function (event) {
+      //remove all active class
+      removeClass();
+      if (event.target.innerHTML === this.innerHTML) {
+        console.log("add resizers");
+        this.classList.add("resizable");
+      }
+    }
+    // makeResizableDiv('.resizable') //moved into toggleUp so that it only runs when a resizeable element is clicked up. No longer needed
   }
 
-  // If element clicked is not the currently selected object, unselect
   if (!event.target.closest('.resizable')) {
-    this.firstElementChild.classList.remove('resizable');
-    // this.secondElementChild.classList.remove('resizable');
+    console.log("remove resizers");
+    removeClass();
   }
 }
+
+// Removes all resizers when called
+function removeClass(){
+  var elements = document.querySelectorAll('.item');
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.remove('active');
+  }
+}
+
+
 // Add event listeners for toggling on and off
 document.querySelector('.canvas').addEventListener('mousedown', selectDown); //change canvas to ID? And canvas can have only 1 child.
 document.querySelector('.canvas').addEventListener('mouseup', selectUp); //change canvas to ID? And canvas can have only 1 child.
 
 // Drag Select
-
 var ds = new DragSelect({
   selectables: document.getElementsByClassName('item'),
-  callback: e => console.log(e),
+  // callback: e => console.log(e),
   area: document.getElementById('canvas'),
   multiSelectKeys: ['ctrlKey', 'shiftKey'],
   autoScrollSpeed: 3
