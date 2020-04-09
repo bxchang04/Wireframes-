@@ -38,13 +38,15 @@ function selectDown() {
   else {
     // console.log("target = " + event.target.classList)
     ds.break(); // instead of stop, which removes the selection border. Enhance -- keep .ds-selected class
-    event.target.classList.add('ds-selected'); // to preserve ds selection border. doesn't work. Needs to add to parent. .parent doesn't work either.
+    // event.target.classList.add('ds-selected'); // to preserve ds selection border. doesn't work. Needs to add to parent. .parent doesn't work either.
   }
 }
 
 // On mouse up
 function selectUp() {
-  target = "";
+/*  target = "";
+
+  /
   // If selected element is active, bail
   if (event.target.closest('.resizable')) return;
 
@@ -66,6 +68,12 @@ function selectUp() {
 
   if (!event.target.closest('.resizable')) {
     // console.log("remove resizers");
+    removeClassDS();
+  }*/
+  addClassDS();
+
+  var canvas = document.querySelectorAll('.canvas');
+  if(event.target === canvas){
     removeClassDS();
   }
 }
@@ -98,6 +106,7 @@ function removeClassDS(){
     dsSelected[i].classList.remove('resizable');
   }
 }
+
 
 
 // Add event listeners for toggling on and off
