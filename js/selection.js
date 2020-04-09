@@ -6,9 +6,13 @@ To improve upon this, more script needs to be added so that a group is created e
 
 // SELECTION
 
-  //Enhance DS -- toggle resizer on selecting 1 element
+  //EDGE cases -- DS vs mouse up and down
+  //Event delegation vs lots of eventListeners
+  //Keeping track of individual instances -- need unique event listeners?
+
   //Enhance DS
     //-- instantiate group on selecting 2 elements
+      //Add resizers to group, not individual elements
     //-- instantiate group on selecting 3 elements
   //Toggle resizers for group
 
@@ -32,7 +36,7 @@ To improve upon this, more script needs to be added so that a group is created e
 // On mouse down
 function selectDown() {
 // Disable drag select while dragging -- refactor somehow. Add a controller?
-  if (event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
+  if(event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
     ds.start();
   }
   else {
@@ -42,68 +46,61 @@ function selectDown() {
   }
 }
 
-// On mouse up
+// On mouse up -- to make compatible with DS
 function selectUp() {
-/*  target = "";
-
-  /
-  // If selected element is active, bail
-  if (event.target.closest('.resizable')) return;
-
-  // Unselect all elements, then select target
-  var elements = document.querySelectorAll('.item');
-
-  // Remove resizers from all, then add resizers to target
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].classList.remove('resizable');
-    elements[i].onclick = function (event) {
-      removeClassDS();
-      if (event.target.innerHTML === this.innerHTML) {
-        // console.log("add resizers");
-        addClassDS();
-        // this.classList.add("resizable"); //adding to event.target introduces visual bug
-      }
-    }
+  if(event.target.matches('.item')){ //to prevent canvas and resizers to get this class
+    event.target.classList.add('ds-selected'); //to enable selection on single click
   }
 
-  if (!event.target.closest('.resizable')) {
-    // console.log("remove resizers");
-    removeClassDS();
-  }*/
-  addClassDS();
-
-  var canvas = document.querySelectorAll('.canvas');
-  if(event.target === canvas){
-    removeClassDS();
+/*
+  if(!event.target.closest('ds-selected')){
+      addClassDS();
+  }else{
+    let target = "";
+    removeClassDS()
+  }
+  if(event.target.matches('.canvas')){
+    removeClassDS()
   }
 }
 
+// DS resizers to selected items
 function addClassDS() {
-  // DS add resizer to one
-  console.log(ds.getSelection());
-  var dsSelected = document.querySelectorAll('.ds-selected');
-  for (var i = 0; i < dsSelected.length; i++) {
-    dsSelected[i].classList.add('resizable');
-  }
+  console.log("add");
+  removeClassDS()
+  if(event.target.closest('ds-selected')){ //to prevent canvas and resizers to get this class
+    console.log("add2"); //why doesn't this fire??
+    event.target.classList.add('resizable');
+  }*/
 }
-
-// Remove all resizers
-/*function removeClass(){
-  var elements = document.querySelectorAll('.item');
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].classList.remove('active');
-  }
-  var dsSelected = document.querySelectorAll('.ds-selected');
-  for (var i = 0; i < dsSelected.length; i++) {
-    dsSelected[i].classList.remove('resizable');
-  }
-}*/
-
+/*
 // Remove all resizers
 function removeClassDS(){
-  var dsSelected = document.querySelectorAll('.ds-selected');
-  for (var i = 0; i < dsSelected.length; i++) {
-    dsSelected[i].classList.remove('resizable');
+  console.log("remove");
+  var items = document.querySelectorAll('.item');
+  for (var i = 0; i < items.length; i++) {
+    items[i].classList.remove('resizable');
+  }
+}
+*/
+
+// Make resizable on click
+var elements = document.querySelectorAll('.item');
+for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.remove('resizable');
+    elements[i].onclick = function (event) {
+        console.log("ONCLICK");
+        //remove all active class
+        removeClass();
+        if (event.target.innerHTML === this.innerHTML) {
+            this.classList.add("resizable");
+        }
+    }
+}
+
+function removeClass(){
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.remove('resizable');
   }
 }
 
