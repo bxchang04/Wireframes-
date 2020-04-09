@@ -1386,14 +1386,14 @@ a.link-bar--selected {
   /*is this needed? Seems redundant.*/
 }
 
-.resizable .resizers{
+.ds-selected .resizers{
   width: 100%;
   height: 100%;
   border: 1px solid #000;
   box-sizing: border-box;
 }
 
-.resizable .resizers .resizer{
+.ds-selected .resizers .resizer{
   width: 15px; /*make dynamic?*/
   height: 15px; /*make dynamic?*/
   background: white;
@@ -1425,46 +1425,46 @@ a.link-bar--selected {
 	transform: translate(-50%, -50%)
 }*/
 
-.resizable .resizers .resizer.top-left {
+.ds-selected .resizers .resizer.top-left {
   left: -5px;
   top: -5px;
 }
 
-.resizable .resizers .resizer.top-right {
+.ds-selected .resizers .resizer.top-right {
   right: -5px;
   top: -5px;
 }
 
-.resizable .resizers .resizer.bottom-left {
+.ds-selected .resizers .resizer.bottom-left {
   left: -5px;
   bottom: -5px;
 }
-.resizable .resizers .resizer.bottom-right {
+.ds-selected .resizers .resizer.bottom-right {
   right: -5px;
   bottom: -5px;
 }
 
-.resizable .resizers .resizer.left-only {
+.ds-selected .resizers .resizer.left-only {
   position: absolute;
 	top: 50%;
 	left: -5px;
 }
 
-.resizable .resizers .resizer.right-only {
+.ds-selected .resizers .resizer.right-only {
   position: absolute;
 	top: 50%;
 	right: -5px;
 }
 
 /* slightly off */
-.resizable .resizers .resizer.top-only {
+.ds-selected .resizers .resizer.top-only {
   position: absolute;
 	top: -5px;
 	right: 50%;
 }
 
 /* slightly off */
-.resizable .resizers .resizer.bottom-only {
+.ds-selected .resizers .resizer.bottom-only {
   position: absolute;
 	bottom: -5px;
 	right: 50%;
@@ -1487,23 +1487,10 @@ a.link-bar--selected {
   border: 1px solid blue;
 }
 
+/* for testing */
+/*
 .ds-selected {
   outline: 3px solid blue;
   outline-offset: 3px;
-  color: black;
-  font-weight: bold;
-}
-/*
-.resize-drag {
-  border-radius: 8px;
-  padding: 20px;
-  margin: 30px 20px;
-  width: 120px;
-  box-sizing: border-box;
-}
-
-.resize-container {
-  width: 100%;
-  height: 240px;
 }
 */

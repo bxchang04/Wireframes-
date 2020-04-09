@@ -5,7 +5,7 @@ interact('.resize-drag')
   .resizable({
     margin: 10, //size of edges for resizing
     preserveAspectRatio: true,
-    edges: { left: true, right: true, bottom: true, top: true },
+    edges: {top:false, left:false, bottom:false, right:false},
     modifiers: [
       // keep the edges inside the parent -- not sure what this block does
       interact.modifiers.restrictEdges({
