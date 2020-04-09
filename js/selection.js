@@ -84,13 +84,23 @@ function removeClassDS(){
 }
 */
 
-// Make resizable on click
+//Test cases:
+//1 on click of item
+  //1a add resizer
+  //1b remove resizer for other items on click
+  //1c don't remove resizers on 2nd click of itself
+//2 remove all resizers on click of canvas from all items
+//3 DS on all items in selection box
+//4 DS on all items with CTRL/SHIFT click
+//5 DS unselect on CTRL/SHIFT click
+
+// Make item resizable on click
 var elements = document.querySelectorAll('.item');
 for (var i = 0; i < elements.length; i++) {
     elements[i].classList.remove('resizable');
     elements[i].onclick = function (event) {
         console.log("ONCLICK");
-        //remove all active class
+        //remove resizers from all items
         removeClass();
         if (event.target.innerHTML === this.innerHTML) {
             this.classList.add("resizable");
