@@ -1488,9 +1488,8 @@ a.link-bar--selected {
 }
 
 /* for testing */
-/*
+
 .ds-selected {
   outline: 3px solid blue;
   outline-offset: 3px;
 }
-*/

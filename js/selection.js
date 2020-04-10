@@ -34,6 +34,21 @@ To improve upon this, more script needs to be added so that a group is created e
 //Enhance -- grey background box on selection and drag, like Balsamiq?
 //Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
 
+
+// Add event listeners for toggling on and off
+document.querySelector('.canvas').addEventListener('mousedown', selectDown); //change canvas to ID? And canvas can have only 1 child.
+document.querySelector('.canvas').addEventListener('mouseup', selectUp); //change canvas to ID? And canvas can have only 1 child.
+
+// Drag Select
+var ds = new DragSelect({
+  selectables: document.getElementsByClassName('item'),
+  callback: e => console.log(e),
+  area: document.getElementById('canvas'),
+  multiSelectKeys: ['ctrlKey', 'shiftKey'],
+  autoScrollSpeed: 3,
+});
+
+
 // On mouse down
 function selectDown() {
 // Disable drag select while dragging -- refactor somehow. Add a controller?
@@ -59,7 +74,45 @@ function selectDown() {
 function selectUp() {
   // removeClass(); // remove resizers when canvas is clicked
   // interact('.resize-drag').resizable({edges: {top:false, left:false, bottom:false, right:false} });
+
+  // Add code to destroy selection group here
 }
+
+function createSelectionGroup() {
+
+  //make this trigger onClick
+  // create the container div
+  var dv = document.createElement('div');
+  // get all divs
+  var divs = document.getElementsByTagName('div');
+  // get the body element
+  var body = document.getElementsByTagName('body')[0];
+
+  // apply class to container div
+  dv.setAttribute('class', 'item');
+  dv.setAttribute('class', 'selectionGroup');
+
+  // find out all those divs having class C
+  for(var i = 0; i < divs.length; i++)
+  {
+     if (divs[i].getAttribute('class') === 'ds-selected')
+     {
+        // put the divs having class C inside container div
+        dv.appendChild(divs[i]);
+     }
+  }
+  // finally append the container div to body
+  body.appendChild(dv);
+
+  // add class 'item' to allow for dragging
+  //test to ensure it doesn't conflict with children 'item'(s). If it does, consider removing class from children.
+}
+
+// function to create permanent group
+function createGroup() {
+
+}
+
 
 //ENHANCE -- Disable resizing unless selected (.ds-selected or .resizable)
 
@@ -73,7 +126,7 @@ function selectUp() {
 //4 DS on all items with CTRL/SHIFT click - FAIL
 //5 DS unselect on CTRL/SHIFT click - FAIL
 
-/*// Make item resizable on click
+/*// Select item to make item resizable on click -- basically manual DS for individual selection
 var elements = document.querySelectorAll('.item');
 for (var i = 0; i < elements.length; i++) {
     // elements[i].classList.remove('ds-selected');
@@ -99,17 +152,3 @@ function removeClass(){
   }
 }
 */
-
-
-// Add event listeners for toggling on and off
-document.querySelector('.canvas').addEventListener('mousedown', selectDown); //change canvas to ID? And canvas can have only 1 child.
-document.querySelector('.canvas').addEventListener('mouseup', selectUp); //change canvas to ID? And canvas can have only 1 child.
-
-// Drag Select
-var ds = new DragSelect({
-  selectables: document.getElementsByClassName('item'),
-  // callback: e => console.log(e),
-  area: document.getElementById('canvas'),
-  multiSelectKeys: ['ctrlKey', 'shiftKey'],
-  autoScrollSpeed: 3,
-});
