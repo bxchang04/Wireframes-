@@ -38,14 +38,18 @@ To improve upon this, more script needs to be added so that a group is created e
 function selectDown() {
 // Disable drag select while dragging -- refactor somehow. Add a controller?
   if(event.target.matches('.canvas')) { // enable drag select only if clicking on canvas. May need to refactor using ID.
-    // ds.start();
+    // ds.start(); // deprecated - this breaks ctrl/shift clicking
     //enable resizing -- enhance to make this element specific. Also, this doesn't apply to DS
+    ds.selector.removeAttribute("hidden"); // not working. Neither does CSS display = 'none';
+    // console.log(ds.selector);
     interact('.resize-drag').resizable({edges: { left: false, right: false, bottom: false, top: false } });
   }
   else {
     //disable resizing -- enhance to make this element specific
+    ds.selector.setAttribute("hidden", ""); // not working. Neither does CSS display = 'none';
+    // console.log(ds.selector);
     interact('.resize-drag').resizable({edges: { left: true, right: true, bottom: true, top: true } });
-    // ds.break(); // instead of stop, which removes the selection border. FIX -- this breaks CTRL/Shift clicking.
+    // ds.break(); // instead of stop, which removes the selection border. degrecated -- this breaks CTRL/Shift clicking.
     // event.target.classList.add('ds-selected'); // to preserve ds selection border. doesn't work. Needs to add to parent. .parent doesn't work either.
   }
 }
@@ -107,5 +111,5 @@ var ds = new DragSelect({
   // callback: e => console.log(e),
   area: document.getElementById('canvas'),
   multiSelectKeys: ['ctrlKey', 'shiftKey'],
-  autoScrollSpeed: 3
+  autoScrollSpeed: 3,
 });
