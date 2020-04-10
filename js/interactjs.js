@@ -1,6 +1,25 @@
 interact('.resize-drag')
   .draggable({
-    onmove: window.dragMoveListener
+    // onmove: window.dragMoveListener
+    modifiers: [
+    interact.modifiers.restrictRect({
+      restriction: 'parent',
+    })
+    ],
+    listeners: {
+      move: e => {
+        document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) {
+          let { x, y } = el.dataset;
+
+          x = (+x || 0) + e.dx;
+          y = (+y || 0) + e.dy;
+
+          el.style.transform = `translate(${x}px, ${y}px)`;
+
+          Object.assign(el.dataset, { x, y });
+        })
+      }
+    },
   })
   .resizable({
     margin: 10, //size of edges for resizing
@@ -36,11 +55,13 @@ interact('.resize-drag')
 
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
-    //ENHANCE -- trigger this only on resize with conditional
-    // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
+    //ENHANCE -- toggle this only on resize with conditional
+      // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
+      // remove/untoggle textContent
   });
 
-function dragMoveListener (event) {
+//Old code for dragging to work - depracated
+/*function dragMoveListener (event) {
     var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -59,4 +80,16 @@ function dragMoveListener (event) {
   interact(target).resizable({
     // 2px resizing border
     margin: 1,
+  });*/
+
+  const item = document.querySelectorAll('.item');
+  const logContainer = document.querySelector('.log');
+
+  item.forEach(el => el.addEventListener('click', e => {
+  	e.stopPropagation();
+  	e.target.setAttribute('selected', true);
+  }));
+
+  document.querySelector('.canvas').addEventListener('click', () => {
+  	item.forEach(el => el.removeAttribute('selected'));
   });

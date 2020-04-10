@@ -1481,6 +1481,11 @@ a.link-bar--selected {
 
 .item {
   position: absolute; /*redundant?*/
+
+  &[selected] { /* this triggers on resizers div for some reason*/
+  border-color: white;
+  background: green;
+  }
 }
 
 .item:focus { /* Not sure what this does */

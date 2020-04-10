@@ -30,6 +30,8 @@ To improve upon this, more script needs to be added so that a group is created e
 
 //BUG: Prevent resizers being cut off on edges (use span?)
 
+// BUG: need to prevent text selection and selection of child elements. @vkomodey "how can i disable text selection while dragging elements" use ignorefrom or a handle
+
 //jQuery solution -- convert to vanilla JS? - http://jsfiddle.net/zVZFq/1445/
 //Enhance -- grey background box on selection and drag, like Balsamiq?
 //Enhance -- drag select is "overly sensitive." Modify to be more like Balsamiq? (only select if entire element is within selection box)
