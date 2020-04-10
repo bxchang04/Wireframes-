@@ -42,7 +42,7 @@ document.querySelector('.canvas').addEventListener('mouseup', selectUp); //chang
 // Drag Select
 var ds = new DragSelect({
   selectables: document.getElementsByClassName('item'),
-  callback: e => console.log(e),
+  // callback: e => console.log(e),
   area: document.getElementById('canvas'),
   multiSelectKeys: ['ctrlKey', 'shiftKey'],
   autoScrollSpeed: 3,
@@ -78,33 +78,43 @@ function selectUp() {
   // Add code to destroy selection group here
 }
 
-function createSelectionGroup() {
+// Add onclick event handler to all items
+var elements = document.querySelectorAll('.item');
 
+for (var i = 0; i < elements.length; i++) {
+  elements[i].onclick = function (event) {
+    // Set event handler to only elements that selected by DS
+    console.log("ONCLICK");
+    createSelectionGroup();
+  }
+}
+
+
+function createSelectionGroup() {
   //make this trigger onClick
   // create the container div
   var dv = document.createElement('div');
   // get all divs
   var divs = document.getElementsByTagName('div');
   // get the body element
-  var body = document.getElementsByTagName('body')[0];
+  var canvas = document.getElementById('canvas');
 
   // apply class to container div
-  dv.setAttribute('class', 'item');
-  dv.setAttribute('class', 'selectionGroup');
+  dv.setAttribute('class', 'item selectionGroup');
 
-  // find out all those divs having class C
+  // find out all those divs having class ds-selected -- BUG can't do nested divs, and doesn't register ds-onSelected (mouse up can be workaround?)
   for(var i = 0; i < divs.length; i++)
   {
-     if (divs[i].getAttribute('class') === 'ds-selected')
+     if (divs[i].getAttribute('class') === '.ds-selected') // doesn't work. Test '.'. Also does this account for multiple classes or does it have to have just 1 class?
      {
-        // put the divs having class C inside container div
+        // put the divs having class ds-selected inside container div
+        console.log("put");
         dv.appendChild(divs[i]);
      }
   }
   // finally append the container div to body
-  body.appendChild(dv);
+  canvas.appendChild(dv);
 
-  // add class 'item' to allow for dragging
   //test to ensure it doesn't conflict with children 'item'(s). If it does, consider removing class from children.
 }
 
@@ -114,17 +124,17 @@ function createGroup() {
 }
 
 
-//ENHANCE -- Disable resizing unless selected (.ds-selected or .resizable)
-
 //Test cases:
 //1 on click of item - PASS
   //1a add resizer - PASS
   //1b remove resizer for other items on click - PASS
-  //1c don't remove resizers on 2nd click of itself -
+  //1c don't remove resizers on 2nd click of itself - PASS (with bugs)
 //2 remove all resizers on click of canvas from all items - PASS
-//3 DS on all items in selection box - FAIL
-//4 DS on all items with CTRL/SHIFT click - FAIL
-//5 DS unselect on CTRL/SHIFT click - FAIL
+//3 DS on all items in selection box - PASS
+//4 DS on all items with CTRL/SHIFT click - PASS
+//5 DS unselect on CTRL/SHIFT click - PASS
+//6 resizing enabled only when ds-selected - PASS
+//7 hide DS if clicking on an element - FAIL
 
 /*// Select item to make item resizable on click -- basically manual DS for individual selection
 var elements = document.querySelectorAll('.item');
