@@ -1,9 +1,15 @@
 interact('.resize-drag')
   .draggable({
+<<<<<<< HEAD
   /*
     onmove: window.dragMoveListener, // goes with function dragMoveListener. Disables multi drag.
 */
     // Code for multi drag
+||||||| merged common ancestors
+    // onmove: window.dragMoveListener
+=======
+    onmove: window.dragMoveListener,
+>>>>>>> test2
     modifiers: [
     interact.modifiers.restrictRect({
       restriction: 'parent',
@@ -131,10 +137,8 @@ function dragMoveListener (event) {
   });
   */
 
-// For removing 'selected'. Not needed.
-/*
+// Required for multi drag to work. Conflicts with original code block above.
   const item = document.querySelectorAll('.item');
-  const logContainer = document.querySelector('.log');
 
   item.forEach(el => el.addEventListener('click', e => {
   	e.stopPropagation();
