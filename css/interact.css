@@ -1481,17 +1481,6 @@ a.link-bar--selected {
 
 .item {
   position: absolute; /*redundant?*/
-<<<<<<< HEAD
-||||||| merged common ancestors
-
-  &[selected] { /* this triggers on resizers div for some reason*/
-  border-color: white;
-  background: green;
-  }
-=======
-
-
->>>>>>> test2
 }
 
 .item:focus { /* Not sure what this does */
