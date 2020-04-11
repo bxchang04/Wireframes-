@@ -1,14 +1,20 @@
 interact('.resize-drag')
   .draggable({
-    // onmove: window.dragMoveListener
+    // Add if .ds-selected < 2
+    onmove: window.dragMoveListener, // goes with function dragMoveListener. Disables multi drag.
+    /*
+    // Add if .ds-selected > 1
+    // Code for multi drag
     modifiers: [
     interact.modifiers.restrictRect({
       restriction: 'parent',
+      endOnly: true
     })
     ],
     listeners: {
       move: e => {
-        document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) {
+        // document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) {
+        document.querySelectorAll('.item').forEach(function(el, elIndex) { // removed [selected]
           let { x, y } = el.dataset;
 
           x = (+x || 0) + e.dx;
@@ -20,6 +26,7 @@ interact('.resize-drag')
         })
       }
     },
+    */
   })
   .resizable({
     margin: 10, //size of edges for resizing
@@ -60,8 +67,8 @@ interact('.resize-drag')
       // remove/untoggle textContent
   });
 
-//Old code for dragging to work - depracated
-/*function dragMoveListener (event) {
+//Original code for dragging to work on first click. Conflicts with multi drag.
+function dragMoveListener (event) {
     var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
         x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
@@ -80,8 +87,11 @@ interact('.resize-drag')
   interact(target).resizable({
     // 2px resizing border
     margin: 1,
-  });*/
+  });
 
+
+// For removing 'selected'. Not needed.
+/*
   const item = document.querySelectorAll('.item');
   const logContainer = document.querySelector('.log');
 
@@ -93,3 +103,4 @@ interact('.resize-drag')
   document.querySelector('.canvas').addEventListener('click', () => {
   	item.forEach(el => el.removeAttribute('selected'));
   });
+*/
