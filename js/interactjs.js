@@ -1,7 +1,8 @@
 interact('.resize-drag')
   .draggable({
+  /*
     onmove: window.dragMoveListener, // goes with function dragMoveListener. Disables multi drag.
-    /*
+*/
     // Code for multi drag
     modifiers: [
     interact.modifiers.restrictRect({
@@ -9,9 +10,14 @@ interact('.resize-drag')
       endOnly: true
     })
     ],
+
     listeners: {
+/*      start: e => {
+        document.querySelectorAll('.ds-selected').forEach(function(el, elIndex) { // removed [selected]
+      }*/
       move: e => {
-        // document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) {
+        // document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) { // original
+        // document.querySelectorAll('.ds-selected]').forEach(function(el, elIndex) { // try this one
         document.querySelectorAll('.item').forEach(function(el, elIndex) { // removed [selected]
           let { x, y } = el.dataset;
 
@@ -24,7 +30,7 @@ interact('.resize-drag')
         })
       }
     },
-    */
+
   })
   .resizable({
     margin: 10, //size of edges for resizing
@@ -67,21 +73,56 @@ interact('.resize-drag')
 
 //Original code for dragging to work on first click. Conflicts with multi drag. Can stay uncommented.
 function dragMoveListener (event) {
+  var items = document.querySelectorAll(".ds-selected");
+  if(items.length <= 1) {
+    // interact(target).unset();
     var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    // keep the dragged position in the data-x/data-y attributes
+    x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+    y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
     // translate the element
     target.style.webkitTransform =
     target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+    'translate(' + x + 'px, ' + y + 'px)';
 
     // update the posiion attributes
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
+  else{
+    interact(target).unset();
+    interact('.resize-drag')
+      .draggable({
+        // Code for multi drag
+        modifiers: [
+        interact.modifiers.restrictRect({
+          restriction: 'parent',
+          endOnly: true
+        })
+        ],
 
+        listeners: {
+          move: e => {
+            // document.querySelectorAll('.item[selected]').forEach(function(el, elIndex) {
+            document.querySelectorAll('.item').forEach(function(el, elIndex) { // removed [selected]
+              // if (el.document.querySelector('.ds-selected')) {
+
+                let { x, y } = el.dataset;
+
+                x = (+x || 0) + e.dx;
+                y = (+y || 0) + e.dy;
+
+                el.style.transform = `translate(${x}px, ${y}px)`;
+
+                Object.assign(el.dataset, { x, y });
+              // }
+            })
+          }
+        },
+      })
+  }
+}
   /*
   // for adjusting resizing border size
   interact(target).resizable({

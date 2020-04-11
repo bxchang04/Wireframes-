@@ -3,6 +3,13 @@ Right now this script serves as a "master controller" for all other functionalit
 To improve upon this, more script needs to be added so that a group is created each time multiple elements are selected ("e.g. group"). On deselection, destroy the group, unless user chooses to group objects together.
 */
 
+// Multi resize
+  //Create selection group and superimpose on top. Clicking edges allows for resize that scales all components inside. (Component alignment though?? Test with 2 then 3 components)
+
+// Multi Drag
+  //REQUIREMENT -- if more than one component is selected, can drag by clicking-and-dragging
+  //HOWEVER, double click on a components bounding box must allow user to modify that component.
+
 
 // SELECTION
 
@@ -58,7 +65,8 @@ function selectDown() {
     // ds.start(); // deprecated - this breaks ctrl/shift clicking
     //enable resizing -- enhance to make this element specific. Also, this doesn't apply to DS
     ds.selector.removeAttribute("hidden"); // not working. Neither does CSS display = 'none';
-    // console.log(ds.selector);
+    //if ds-selected <= 1
+    interact('.resize-drag').draggable({onmove: ""});
     interact('.resize-drag').resizable({edges: { left: false, right: false, bottom: false, top: false } });
   }
   else {
@@ -76,6 +84,9 @@ function selectDown() {
 function selectUp() {
   // removeClass(); // remove resizers when canvas is clicked
   // interact('.resize-drag').resizable({edges: {top:false, left:false, bottom:false, right:false} });
+
+  interact('.resize-drag').draggable({onmove: ""});
+
 
   // Add code to destroy selection group here
 }
