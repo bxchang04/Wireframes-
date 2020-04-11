@@ -1,11 +1,6 @@
 interact('.resize-drag')
   .draggable({
-  /*
-    onmove: window.dragMoveListener, // goes with function dragMoveListener. Disables multi drag.
-*/
-    // Code for multi drag
-    // onmove: window.dragMoveListener
-    onmove: window.dragMoveListener,
+    // onmove: window.dragMoveListener,
     modifiers: [
       interact.modifiers.restrictRect({
         restriction: 'parent',
@@ -67,8 +62,8 @@ interact('.resize-drag')
       // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
       // remove/untoggle textContent
   });
-
-//Original code for dragging to work on first click. Conflicts with multi drag. Can stay uncommented.
+/*
+//Original code for dragging to work
 function dragMoveListener (event) {
   // interact(target).unset();
   var target = event.target,
@@ -81,18 +76,20 @@ function dragMoveListener (event) {
   target.style.transform =
   'translate(' + x + 'px, ' + y + 'px)';
 
-  // update the posiion attributes
-  target.setAttribute('data-x', x);
-  target.setAttribute('data-y', y);
-}
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
+*/
 
-  /*
-  // for adjusting resizing border size
+/*
+//For adjusting resize border. Breaks multi-drag.
   interact(target).resizable({
     // 2px resizing border
     margin: 1,
   });
-  */
+*/
+
 
 // Required for multi drag to work. Conflicts with original code block above.
   const item = document.querySelectorAll('.item');
