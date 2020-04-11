@@ -1,9 +1,7 @@
 interact('.resize-drag')
   .draggable({
-    // Add if .ds-selected < 2
     onmove: window.dragMoveListener, // goes with function dragMoveListener. Disables multi drag.
     /*
-    // Add if .ds-selected > 1
     // Code for multi drag
     modifiers: [
     interact.modifiers.restrictRect({
@@ -67,7 +65,7 @@ interact('.resize-drag')
       // remove/untoggle textContent
   });
 
-//Original code for dragging to work on first click. Conflicts with multi drag.
+//Original code for dragging to work on first click. Conflicts with multi drag. Can stay uncommented.
 function dragMoveListener (event) {
     var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
@@ -84,11 +82,13 @@ function dragMoveListener (event) {
     target.setAttribute('data-y', y);
   }
 
+  /*
+  // for adjusting resizing border size
   interact(target).resizable({
     // 2px resizing border
     margin: 1,
   });
-
+  */
 
 // For removing 'selected'. Not needed.
 /*
