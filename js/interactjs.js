@@ -1,6 +1,6 @@
 interact('.resize-drag')
   .draggable({
-    onmove: window.dragMoveListener,
+    // onmove: window.dragMoveListener,
     modifiers: [
     interact.modifiers.restrictRect({
       restriction: 'parent',
@@ -59,8 +59,8 @@ interact('.resize-drag')
       // target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
       // remove/untoggle textContent
   });
-
-//Original code for dragging to work -
+/*
+//Original code for dragging to work
 function dragMoveListener (event) {
     var target = event.target,
         // keep the dragged position in the data-x/data-y attributes
@@ -76,11 +76,16 @@ function dragMoveListener (event) {
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
+*/
 
+/*
+//For adjusting resize border. Breaks multi-drag.
   interact(target).resizable({
     // 2px resizing border
     margin: 1,
   });
+*/
+
 
 // Required for multi drag to work. Conflicts with original code block above.
   const item = document.querySelectorAll('.item');
